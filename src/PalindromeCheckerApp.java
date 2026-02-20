@@ -17,6 +17,9 @@ public class PalindromeCheckerApp {
 
         System.out.println("\nRunning Use Case 4:");
         usecase4();
+
+        System.out.println("\nRunning Use Case 5:");
+        usecase5();
     }
 
     // UC1
@@ -59,7 +62,7 @@ public class PalindromeCheckerApp {
         }
     }
 
-    // UC4 (Two-pointer approach)
+    // UC4
     public static void usecase4() {
         String input = "radar";
         char[] chars = input.toCharArray();
@@ -81,4 +84,29 @@ public class PalindromeCheckerApp {
             System.out.println(input + " is not a palindrome");
         }
     }
+
+    // UC5
+public static void usecase5() {
+    String input = "noon";
+    java.util.Stack<Character> stack = new java.util.Stack<>();
+
+    for (char c : input.toCharArray()) {
+        stack.push(c);
+    }
+
+    boolean isPalindrome = true;
+
+    for (char c : input.toCharArray()) {
+        if (c != stack.pop()) {
+            isPalindrome = false;
+            break;
+        }
+    }
+
+    if (isPalindrome) {
+        System.out.println(input + " is a palindrome");
+    } else {
+        System.out.println(input + " is not a palindrome");
+    }
+}
 }
