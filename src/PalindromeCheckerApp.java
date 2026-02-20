@@ -20,6 +20,9 @@ public class PalindromeCheckerApp {
 
         System.out.println("\nRunning Use Case 5:");
         usecase5();
+
+        System.out.println("\nRunning Use Case 6:");
+        usecase6();
     }
 
     // UC1
@@ -98,6 +101,35 @@ public static void usecase5() {
 
     for (char c : input.toCharArray()) {
         if (c != stack.pop()) {
+            isPalindrome = false;
+            break;
+        }
+    }
+
+    if (isPalindrome) {
+        System.out.println(input + " is a palindrome");
+    } else {
+        System.out.println(input + " is not a palindrome");
+    }
+}
+
+      // UC6 
+public static void usecase6() {
+
+    String input = "civic";
+
+    java.util.Queue<Character> queue = new java.util.LinkedList<>();
+    java.util.Stack<Character> stack = new java.util.Stack<>();
+
+    for (char c : input.toCharArray()) {
+        queue.add(c);
+        stack.push(c);
+    }
+
+    boolean isPalindrome = true;
+
+    while (!queue.isEmpty()) {
+        if (!queue.poll().equals(stack.pop())) {
             isPalindrome = false;
             break;
         }
