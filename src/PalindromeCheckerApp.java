@@ -11,6 +11,9 @@ public class PalindromeCheckerApp {
 
         System.out.println("\nRunning Use Case 2:");
         usecase2();
+
+        System.out.println("\nRunning Use Case 3:");
+        usecase3();
     }
 
     // UC1
@@ -31,6 +34,22 @@ public class PalindromeCheckerApp {
         }
 
         if (isPalindrome) {
+            System.out.println(input + " is a palindrome");
+        } else {
+            System.out.println(input + " is not a palindrome");
+        }
+    }
+    
+    //UC3
+    public static void usecase3() {
+        String input = "madam";
+        String reversed = "";
+
+        for (int i = input.length() - 1; i >= 0; i--) {
+            reversed += input.charAt(i);
+        }
+
+        if (reversed.equals(input)) {
             System.out.println(input + " is a palindrome");
         } else {
             System.out.println(input + " is not a palindrome");
