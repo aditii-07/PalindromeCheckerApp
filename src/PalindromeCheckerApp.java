@@ -23,6 +23,9 @@ public class PalindromeCheckerApp {
 
         System.out.println("\nRunning Use Case 6:");
         usecase6();
+
+        System.out.println("\nRunning Use Case 7:");
+        usecase7();
     }
 
     // UC1
@@ -130,6 +133,33 @@ public static void usecase6() {
 
     while (!queue.isEmpty()) {
         if (!queue.poll().equals(stack.pop())) {
+            isPalindrome = false;
+            break;
+        }
+    }
+
+    if (isPalindrome) {
+        System.out.println(input + " is a palindrome");
+    } else {
+        System.out.println(input + " is not a palindrome");
+    }
+}
+
+      // UC7 
+public static void usecase7() {
+
+    String input = "refer";
+
+    java.util.Deque<Character> deque = new java.util.ArrayDeque<>();
+
+    for (char c : input.toCharArray()) {
+        deque.add(c);
+    }
+
+    boolean isPalindrome = true;
+
+    while (deque.size() > 1) {
+        if (!deque.removeFirst().equals(deque.removeLast())) {
             isPalindrome = false;
             break;
         }
