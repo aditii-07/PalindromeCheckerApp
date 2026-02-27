@@ -35,6 +35,9 @@ public class PalindromeCheckerApp {
 
         System.out.println("\nRunning Use Case 10:");
         usecase10();
+
+        System.out.println("\nRunning Use Case 11:");
+        usecase11();
     }
 
     // UC1
@@ -296,6 +299,38 @@ public static void usecase7() {
             System.out.println(input + " is a palindrome");
         } else {
             System.out.println(input + " is not a palindrome");
+        }
+    }
+
+    // UC11
+    public static void usecase11() {
+
+        String input = "Level";
+        PalindromeService service = new PalindromeService();
+
+        boolean isPalindrome = service.checkPalindrome(input);
+
+        if (isPalindrome) {
+            System.out.println(input + " is a palindrome");
+        } else {
+            System.out.println(input + " is not a palindrome");
+        }
+    }
+
+    static class PalindromeService {
+
+        public boolean checkPalindrome(String input) {
+            String normalized = input.replaceAll("\\s+", "").toLowerCase();
+            int start = 0;
+            int end = normalized.length() - 1;
+            while (start < end) {
+                if (normalized.charAt(start) != normalized.charAt(end)) {
+                    return false;
+                }
+                start++;
+                end--;
+            }
+            return true;
         }
     }
 }
