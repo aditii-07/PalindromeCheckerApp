@@ -26,6 +26,9 @@ public class PalindromeCheckerApp {
 
         System.out.println("\nRunning Use Case 7:");
         usecase7();
+
+        System.out.println("\nRunning Use Case 8:");
+        usecase8();
     }
 
     // UC1
@@ -171,4 +174,83 @@ public static void usecase7() {
         System.out.println(input + " is not a palindrome");
     }
 }
+    // UC8
+    public static void usecase8() {
+
+        String input = "level";
+        Node head = createLinkedList(input);
+        boolean isPalindrome = isPalindromeLinkedList(head);
+        if (isPalindrome) {
+            System.out.println(input + " is a palindrome");
+        } else {
+            System.out.println(input + " is not a palindrome");
+        }
+    }
+
+    static class Node {
+        char data;
+        Node next;
+
+        Node(char data) {
+            this.data = data;
+            this.next = null;
+        }
+    }
+
+    public static Node createLinkedList(String input) {
+
+        if (input == null || input.length() == 0)
+            return null;
+
+        Node head = new Node(input.charAt(0));
+        Node current = head;
+
+        for (int i = 1; i < input.length(); i++) {
+            current.next = new Node(input.charAt(i));
+            current = current.next;
+        }
+
+        return head;
+    }
+
+    public static boolean isPalindromeLinkedList(Node head) {
+
+        if (head == null || head.next == null)
+            return true;
+
+        Node slow = head;
+        Node fast = head;
+
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        Node secondHalf = reverse(slow);
+        Node firstHalf = head;
+
+        while (secondHalf != null) {
+            if (firstHalf.data != secondHalf.data) {
+                return false;
+            }
+            firstHalf = firstHalf.next;
+            secondHalf = secondHalf.next;
+        }
+
+        return true;
+    }
+
+    public static Node reverse(Node head) {
+
+        Node prev = null;
+        Node current = head;
+
+        while (current != null) {
+            Node next = current.next;
+            current.next = prev;
+            prev = current;
+            current = next;
+        }
+
+        return prev;
+    }
 }
