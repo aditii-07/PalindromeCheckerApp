@@ -38,6 +38,9 @@ public class PalindromeCheckerApp {
 
         System.out.println("\nRunning Use Case 11:");
         usecase11();
+
+        System.out.println("\nRunning Use Case 12:");
+        usecase12();
     }
 
     // UC1
@@ -331,6 +334,82 @@ public static void usecase7() {
                 end--;
             }
             return true;
+        }
+    }
+
+    // UC12
+    public static void usecase12() {
+
+        String input = "racecar";
+
+        PalindromeStrategy strategy = new StackStrategy();
+        PalindromeContext context = new PalindromeContext(strategy);
+
+        boolean result = context.check(input);
+
+        if (result) {
+            System.out.println(input + " is a palindrome");
+        } else {
+            System.out.println(input + " is not a palindrome");
+        }
+    }
+
+    interface PalindromeStrategy {
+        boolean isPalindrome(String input);
+    }
+
+    static class StackStrategy implements PalindromeStrategy {
+
+        public boolean isPalindrome(String input) {
+
+            java.util.Stack<Character> stack = new java.util.Stack<>();
+            String normalized = input.replaceAll("\\s+", "").toLowerCase();
+
+            for (char c : normalized.toCharArray()) {
+                stack.push(c);
+            }
+
+            for (char c : normalized.toCharArray()) {
+                if (c != stack.pop()) {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+    }
+
+    static class DequeStrategy implements PalindromeStrategy {
+
+        public boolean isPalindrome(String input) {
+
+            java.util.Deque<Character> deque = new java.util.ArrayDeque<>();
+            String normalized = input.replaceAll("\\s+", "").toLowerCase();
+
+            for (char c : normalized.toCharArray()) {
+                deque.add(c);
+            }
+
+            while (deque.size() > 1) {
+                if (deque.removeFirst() != deque.removeLast()) {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+    }
+
+    static class PalindromeContext {
+
+        private PalindromeStrategy strategy;
+
+        public PalindromeContext(PalindromeStrategy strategy) {
+            this.strategy = strategy;
+        }
+
+        public boolean check(String input) {
+            return strategy.isPalindrome(input);
         }
     }
 }
