@@ -41,6 +41,9 @@ public class PalindromeCheckerApp {
 
         System.out.println("\nRunning Use Case 12:");
         usecase12();
+
+        System.out.println("\nRunning Use Case 13:");
+        usecase13();
     }
 
     // UC1
@@ -411,5 +414,39 @@ public static void usecase7() {
         public boolean check(String input) {
             return strategy.isPalindrome(input);
         }
+    }
+
+    // UC13
+    public static void usecase13() {
+
+        String input = "A man a plan a canal Panama";
+        String normalized = input.replaceAll("\\s+", "").toLowerCase();
+
+        long startTime;
+        long endTime;
+
+        System.out.println("Performance Comparison Results:");
+
+        startTime = System.nanoTime();
+        usecase2();
+        endTime = System.nanoTime();
+        System.out.println("UC2 Time: " + (endTime - startTime) + " ns");
+
+        startTime = System.nanoTime();
+        isPalindromeRecursive(normalized, 0, normalized.length() - 1);
+        endTime = System.nanoTime();
+        System.out.println("UC9 Recursive Time: " + (endTime - startTime) + " ns");
+
+        startTime = System.nanoTime();
+        PalindromeStrategy stackStrategy = new StackStrategy();
+        stackStrategy.isPalindrome(normalized);
+        endTime = System.nanoTime();
+        System.out.println("UC12 Stack Strategy Time: " + (endTime - startTime) + " ns");
+
+        startTime = System.nanoTime();
+        PalindromeStrategy dequeStrategy = new DequeStrategy();
+        dequeStrategy.isPalindrome(normalized);
+        endTime = System.nanoTime();
+        System.out.println("UC12 Deque Strategy Time: " + (endTime - startTime) + " ns");
     }
 }
