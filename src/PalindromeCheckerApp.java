@@ -29,6 +29,9 @@ public class PalindromeCheckerApp {
 
         System.out.println("\nRunning Use Case 8:");
         usecase8();
+
+        System.out.println("\nRunning Use Case 9:");
+        usecase9();
     }
 
     // UC1
@@ -252,5 +255,29 @@ public static void usecase7() {
         }
 
         return prev;
+    }
+
+    // UC9
+    public static void usecase9() {
+
+        String input = "madam";
+        boolean isPalindrome = isPalindromeRecursive(input, 0, input.length() - 1);
+
+        if (isPalindrome) {
+            System.out.println(input + " is a palindrome");
+        } else {
+            System.out.println(input + " is not a palindrome");
+        }
+    }
+
+    public static boolean isPalindromeRecursive(String str, int start, int end) {
+
+        if (start >= end)
+            return true;
+
+        if (str.charAt(start) != str.charAt(end))
+            return false;
+
+        return isPalindromeRecursive(str, start + 1, end - 1);
     }
 }
