@@ -32,6 +32,9 @@ public class PalindromeCheckerApp {
 
         System.out.println("\nRunning Use Case 9:");
         usecase9();
+
+        System.out.println("\nRunning Use Case 10:");
+        usecase10();
     }
 
     // UC1
@@ -279,5 +282,20 @@ public static void usecase7() {
             return false;
 
         return isPalindromeRecursive(str, start + 1, end - 1);
+    }
+
+    // UC10
+    public static void usecase10() {
+
+        String input = "A man a plan a canal Panama";
+        String normalized = input.replaceAll("\\s+", "").toLowerCase();
+
+        boolean isPalindrome = isPalindromeRecursive(normalized, 0, normalized.length() - 1);
+
+        if (isPalindrome) {
+            System.out.println(input + " is a palindrome");
+        } else {
+            System.out.println(input + " is not a palindrome");
+        }
     }
 }
